@@ -2,7 +2,7 @@
 
 This is a project using React, Webpack and a Go server
 
-
+git clone https://github.com/gorilla/websocket.git
 
 
 To get it running:
@@ -16,3 +16,9 @@ To get it running:
 `webpack --watch --progress --colors`
 
 `go run goServer/server.js`
+
+
+#RESOURCES:
+
+Websockets && Golang Primer
+https://www.youtube.com/watch?v=CIh8qN7LO8M
