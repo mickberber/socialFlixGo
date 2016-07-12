@@ -10,9 +10,11 @@ import (
 var upgrader = websocket.Upgrader{}
 
 func main() {
+  //Handle and serve dist folder
   fs := http.FileServer(http.Dir("dist"))
   http.Handle("/", fs)
 
+  //send Message data as JSON in a struct
   http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 		var conn, _ = upgrader.Upgrade(w, r, nil)
 		go func(conn *websocket.Conn) {
@@ -24,6 +26,7 @@ func main() {
 			}
 		}(conn)
 
+    //loop, every 5 seconds send message struct
 		go func(conn *websocket.Conn) {
 			ch := time.Tick(5 * time.Second)
 
@@ -44,6 +47,7 @@ func main() {
 			for {
 				mType, msg, _ := conn.ReadMessage()
 
+        //on message, will send message right back to client
 				conn.WriteMessage(mType, msg)
 			}
 		}(conn)
@@ -55,6 +59,7 @@ func main() {
 		go func(conn *websocket.Conn) {
 			for {
 				_, msg, _ := conn.ReadMessage()
+        //prints message data to terminal
 				println(string(msg))
 			}
 		}(conn)
@@ -64,7 +69,7 @@ func main() {
   http.ListenAndServe(":3000", nil)
 }
 
-//struct 
+//struct
 type myStruct struct {
 	Username  string `json:"username"`
 	FirstName string `json:"firstName"`
