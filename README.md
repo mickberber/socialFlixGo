@@ -40,3 +40,6 @@ To get it running:
 
 Websockets && Golang Primer
 https://www.youtube.com/watch?v=CIh8qN7LO8M
+
+Golang importing files
+https://www.youtube.com/watch?v=myCHCXFFTPY

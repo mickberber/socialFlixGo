@@ -7,11 +7,12 @@ import (
   "time"
 )
 
+//object to upgrade websocket connection
 var upgrader = websocket.Upgrader{}
 
 func main() {
   //Handle and serve dist folder
-  fs := http.FileServer(http.Dir("dist"))
+  fs := http.FileServer(http.Dir("client/dist"))
   http.Handle("/", fs)
 
   //send Message data as JSON in a struct
