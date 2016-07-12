@@ -26918,9 +26918,17 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ws = new WebSocket('ws://localhost:3000/v1/ws');
+	var ws = new WebSocket('ws://localhost:3000/test');
+	var v1 = new WebSocket('ws://localhost:3000/v1/ws');
+	var v2 = new WebSocket('ws://localhost:3000/v2/ws');
 
 	ws.addEventListener('message', function (e) {
+	  console.log(e);
+	});
+	v1.addEventListener('message', function (e) {
+	  console.log(e);
+	});
+	v2.addEventListener('message', function (e) {
 	  console.log(e);
 	});
 
@@ -26941,7 +26949,8 @@
 	  _createClass(App, [{
 	    key: 'clickHandler',
 	    value: function clickHandler() {
-	      ws.send('foo');
+	      v1.send('foo');
+	      v2.send('should log to terminal');
 	    }
 	  }, {
 	    key: 'render',
